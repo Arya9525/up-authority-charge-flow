@@ -11,6 +11,8 @@ import {
   Lock,
   Megaphone,
 } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { inr, totals } from "@/lib/prototype-data";
 
 export const Route = createFileRoute("/")({
@@ -30,7 +32,7 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  component: Landing,
+  component: RedirectToLogin,
 });
 
 const features = [
@@ -38,6 +40,17 @@ const features = [
   { icon: ReceiptText, title: "Historical Rate Locking", body: "Arrears retain the rate applicable when the bill was generated — never recalculated." },
   { icon: FileDown, title: "Digital Bill & Receipt", body: "Instant PDF bill download and digitally signed receipt after each payment." },
 ];
+
+function RedirectToLogin() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate({ to: "/login" });
+  }, []);
+
+  return null;
+}
+
 
 function Landing() {
   return (

@@ -1,4 +1,8 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import {
+  Link,
+  useRouterState,
+  useNavigate,
+} from "@tanstack/react-router";
 import {
   LayoutDashboard,
   Layers3,
@@ -56,6 +60,21 @@ const nav: { group: string; items: NavItem[] }[] = [
 export function AdminShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
+  const navigate = useNavigate();
+
+const logout = () => {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("role");
+
+  window.location.href = "/login";
+};
+
+const switchToPortal = () => {
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("role");
+
+  window.location.href = "/login";
+};
   return (
     <div className="min-h-screen w-full bg-background">
       <div className="ashoka-strip h-1 w-full" />
@@ -105,12 +124,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
           </nav>
 
           <div className="border-t border-sidebar-border p-3">
-            <Link
-              to="/portal"
-              className="flex items-center gap-2 rounded-lg bg-sidebar-accent px-3 py-2 text-xs font-semibold text-sidebar-accent-foreground hover:opacity-90"
-            >
-              <Users className="size-4" /> Switch to Allottee Portal
-            </Link>
+            <button
+  onClick={switchToPortal}
+  className="flex w-full items-center gap-2 rounded-lg bg-sidebar-accent px-3 py-2 text-xs font-semibold text-sidebar-accent-foreground hover:opacity-90"
+>
+  <Users className="size-4" />
+  Switch to Allottee Portal
+</button>
             <p className="mt-3 px-1 text-[10px] leading-relaxed text-sidebar-foreground/50">
               NIC Cloud • v3.4.1 • Last sync 05 Aug 2026, 09:45 AM
             </p>
@@ -153,7 +173,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
                     <p className="text-xs font-semibold">Anurag Mishra, IAS</p>
                     <p className="text-[10px] text-muted-foreground">Vice Chairman • LDA</p>
                   </div>
-                  <LogOut className="ml-1 size-3.5 text-muted-foreground" />
+                  <button
+  onClick={logout}
+  className="ml-1 rounded-md p-1 transition hover:bg-muted"
+  title="Logout"
+>
+  <LogOut className="size-4 text-muted-foreground" />
+</button>
                 </div>
               </div>
             </div>
