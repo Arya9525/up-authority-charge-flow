@@ -25,6 +25,7 @@ import { Route as AdminSchemesRouteImport } from './routes/admin.schemes'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as PortalIndexRouteImport } from './routes/portal.index'
+import { Route as PortalHistoryRouteImport } from './routes/portal.history'
 import { Route as PortalPayRouteImport } from './routes/portal.pay'
 
 const IndexRoute = IndexRouteImport.update({
@@ -107,6 +108,11 @@ const PortalIndexRoute = PortalIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PortalRoute,
 } as any)
+const PortalHistoryRoute = PortalHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => PortalRoute,
+} as any)
 const PortalPayRoute = PortalPayRouteImport.update({
   id: '/pay',
   path: '/pay',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/admin/schemes': typeof AdminSchemesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin/': typeof AdminIndexRoute
   '/portal/': typeof PortalIndexRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/admin/schemes': typeof AdminSchemesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin': typeof AdminIndexRoute
   '/portal': typeof PortalIndexRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/admin/schemes': typeof AdminSchemesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin/': typeof AdminIndexRoute
   '/portal/': typeof PortalIndexRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/admin/schemes'
     | '/admin/settings'
     | '/admin/users'
+    | '/portal/history'
     | '/portal/pay'
     | '/admin/'
     | '/portal/'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/admin/schemes'
     | '/admin/settings'
     | '/admin/users'
+    | '/portal/history'
     | '/portal/pay'
     | '/admin'
     | '/portal'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/admin/schemes'
     | '/admin/settings'
     | '/admin/users'
+    | '/portal/history'
     | '/portal/pay'
     | '/admin/'
     | '/portal/'
@@ -347,6 +359,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalIndexRouteImport
       parentRoute: typeof PortalRoute
     }
+    '/portal/history': {
+      id: '/portal/history'
+      path: '/history'
+      fullPath: '/portal/history'
+      preLoaderRoute: typeof PortalHistoryRouteImport
+      parentRoute: typeof PortalRoute
+    }
     '/portal/pay': {
       id: '/portal/pay'
       path: '/pay'
@@ -390,11 +409,13 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PortalRouteChildren {
+  PortalHistoryRoute: typeof PortalHistoryRoute
   PortalPayRoute: typeof PortalPayRoute
   PortalIndexRoute: typeof PortalIndexRoute
 }
 
 const PortalRouteChildren: PortalRouteChildren = {
+  PortalHistoryRoute: PortalHistoryRoute,
   PortalPayRoute: PortalPayRoute,
   PortalIndexRoute: PortalIndexRoute,
 }
