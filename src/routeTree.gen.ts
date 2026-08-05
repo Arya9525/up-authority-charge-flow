@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as PortalRouteImport } from './routes/portal'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAllotmentRouteImport } from './routes/admin.allotment'
 import { Route as AdminAllotteesRouteImport } from './routes/admin.allottees'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -98,6 +104,7 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/portal': typeof PortalRoute
   '/admin/allotment': typeof AdminAllotmentRoute
   '/admin/allottees': typeof AdminAllotteesRoute
   '/admin/bills': typeof AdminBillsRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/portal': typeof PortalRoute
   '/admin/allotment': typeof AdminAllotmentRoute
   '/admin/allottees': typeof AdminAllotteesRoute
   '/admin/bills': typeof AdminBillsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/portal': typeof PortalRoute
   '/admin/allotment': typeof AdminAllotmentRoute
   '/admin/allottees': typeof AdminAllotteesRoute
   '/admin/bills': typeof AdminBillsRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/portal'
     | '/admin/allotment'
     | '/admin/allottees'
     | '/admin/bills'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/portal'
     | '/admin/allotment'
     | '/admin/allottees'
     | '/admin/bills'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/portal'
     | '/admin/allotment'
     | '/admin/allottees'
     | '/admin/bills'
@@ -196,6 +208,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  PortalRoute: typeof PortalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -336,6 +356,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  PortalRoute: PortalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
