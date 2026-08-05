@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
 
@@ -59,7 +61,7 @@ const nav: { group: string; items: NavItem[] }[] = [
 
 export function AdminShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-
+const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
 const logout = () => {
@@ -80,8 +82,37 @@ const switchToPortal = () => {
       <div className="ashoka-strip h-1 w-full" />
       <div className="flex">
         {/* Sidebar */}
-        <aside className="sticky top-0 hidden h-screen w-[264px] shrink-0 flex-col overflow-y-auto bg-sidebar text-sidebar-foreground lg:flex">
-          <div className="flex items-center gap-3 border-b border-sidebar-border px-4 py-4">
+<aside
+  className={`
+    fixed
+    lg:static
+    top-0
+    left-0
+    z-50
+    h-screen
+    w-[264px]
+    bg-sidebar
+    text-sidebar-foreground
+    overflow-y-auto
+    transform
+    transition-transform
+    duration-300
+    ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+    lg:translate-x-0
+    lg:flex
+    lg:flex-col
+    lg:shrink-0
+  `}
+>     <div className="flex items-center justify-between border-b border-sidebar-border p-4 lg:hidden">
+  <span className="font-bold">
+    UC-MS Portal
+  </span>
+
+  <button onClick={() => setSidebarOpen(false)}>
+    <X className="h-5 w-5" />
+  </button>
+</div>    
+ <div className="flex items-center gap-3 border-b border-sidebar-border px-4 py-4">
             <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-sidebar-primary/20 text-sidebar-primary-foreground">
               <Building2 className="size-5" />
             </span>
@@ -136,11 +167,23 @@ const switchToPortal = () => {
             </p>
           </div>
         </aside>
+        {sidebarOpen && (
+  <div
+    className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+    onClick={() => setSidebarOpen(false)}
+  />
+)}
 
         {/* Main */}
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="sticky top-0 z-20 border-b border-border bg-card/85 backdrop-blur-md">
             <div className="flex items-center gap-3 px-4 py-3">
+              <button
+  onClick={() => setSidebarOpen(true)}
+  className="mr-2 rounded-md border border-border p-2 lg:hidden"
+>
+  <Menu className="h-5 w-5" />
+</button>
               <div className="hidden min-w-0 flex-1 items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-2 md:flex">
                 <Search className="size-4 shrink-0 text-muted-foreground" />
                 <input
