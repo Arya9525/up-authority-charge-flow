@@ -10,33 +10,251 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAllotmentRouteImport } from './routes/admin.allotment'
+import { Route as AdminAllotteesRouteImport } from './routes/admin.allottees'
+import { Route as AdminBillsRouteImport } from './routes/admin.bills'
+import { Route as AdminDemandRouteImport } from './routes/admin.demand'
+import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
+import { Route as AdminPlotsRouteImport } from './routes/admin.plots'
+import { Route as AdminRatesRouteImport } from './routes/admin.rates'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminSchemesRouteImport } from './routes/admin.schemes'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as PortalIndexRouteImport } from './routes/portal.index'
+import { Route as PortalHistoryRouteImport } from './routes/portal.history'
+import { Route as PortalNotificationsRouteImport } from './routes/portal.notifications'
+import { Route as PortalPayRouteImport } from './routes/portal.pay'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAllotmentRoute = AdminAllotmentRouteImport.update({
+  id: '/allotment',
+  path: '/allotment',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAllotteesRoute = AdminAllotteesRouteImport.update({
+  id: '/allottees',
+  path: '/allottees',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBillsRoute = AdminBillsRouteImport.update({
+  id: '/bills',
+  path: '/bills',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDemandRoute = AdminDemandRouteImport.update({
+  id: '/demand',
+  path: '/demand',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPlotsRoute = AdminPlotsRouteImport.update({
+  id: '/plots',
+  path: '/plots',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRatesRoute = AdminRatesRouteImport.update({
+  id: '/rates',
+  path: '/rates',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSchemesRoute = AdminSchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const PortalIndexRoute = PortalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PortalRoute,
+} as any)
+const PortalHistoryRoute = PortalHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => PortalRoute,
+} as any)
+const PortalNotificationsRoute = PortalNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => PortalRoute,
+} as any)
+const PortalPayRoute = PortalPayRouteImport.update({
+  id: '/pay',
+  path: '/pay',
+  getParentRoute: () => PortalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/portal': typeof PortalRouteWithChildren
+  '/admin/allotment': typeof AdminAllotmentRoute
+  '/admin/allottees': typeof AdminAllotteesRoute
+  '/admin/bills': typeof AdminBillsRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/plots': typeof AdminPlotsRoute
+  '/admin/rates': typeof AdminRatesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/schemes': typeof AdminSchemesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
+  '/portal/pay': typeof PortalPayRoute
+  '/admin/': typeof AdminIndexRoute
+  '/portal/': typeof PortalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/allotment': typeof AdminAllotmentRoute
+  '/admin/allottees': typeof AdminAllotteesRoute
+  '/admin/bills': typeof AdminBillsRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/plots': typeof AdminPlotsRoute
+  '/admin/rates': typeof AdminRatesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/schemes': typeof AdminSchemesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
+  '/portal/pay': typeof PortalPayRoute
+  '/admin': typeof AdminIndexRoute
+  '/portal': typeof PortalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/portal': typeof PortalRouteWithChildren
+  '/admin/allotment': typeof AdminAllotmentRoute
+  '/admin/allottees': typeof AdminAllotteesRoute
+  '/admin/bills': typeof AdminBillsRoute
+  '/admin/demand': typeof AdminDemandRoute
+  '/admin/payments': typeof AdminPaymentsRoute
+  '/admin/plots': typeof AdminPlotsRoute
+  '/admin/rates': typeof AdminRatesRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/admin/schemes': typeof AdminSchemesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
+  '/portal/pay': typeof PortalPayRoute
+  '/admin/': typeof AdminIndexRoute
+  '/portal/': typeof PortalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/portal'
+    | '/admin/allotment'
+    | '/admin/allottees'
+    | '/admin/bills'
+    | '/admin/demand'
+    | '/admin/payments'
+    | '/admin/plots'
+    | '/admin/rates'
+    | '/admin/reports'
+    | '/admin/schemes'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/portal/history'
+    | '/portal/notifications'
+    | '/portal/pay'
+    | '/admin/'
+    | '/portal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/allotment'
+    | '/admin/allottees'
+    | '/admin/bills'
+    | '/admin/demand'
+    | '/admin/payments'
+    | '/admin/plots'
+    | '/admin/rates'
+    | '/admin/reports'
+    | '/admin/schemes'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/portal/history'
+    | '/portal/notifications'
+    | '/portal/pay'
+    | '/admin'
+    | '/portal'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/portal'
+    | '/admin/allotment'
+    | '/admin/allottees'
+    | '/admin/bills'
+    | '/admin/demand'
+    | '/admin/payments'
+    | '/admin/plots'
+    | '/admin/rates'
+    | '/admin/reports'
+    | '/admin/schemes'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/portal/history'
+    | '/portal/notifications'
+    | '/portal/pay'
+    | '/admin/'
+    | '/portal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  PortalRoute: typeof PortalRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +266,189 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/allotment': {
+      id: '/admin/allotment'
+      path: '/allotment'
+      fullPath: '/admin/allotment'
+      preLoaderRoute: typeof AdminAllotmentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/allottees': {
+      id: '/admin/allottees'
+      path: '/allottees'
+      fullPath: '/admin/allottees'
+      preLoaderRoute: typeof AdminAllotteesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/bills': {
+      id: '/admin/bills'
+      path: '/bills'
+      fullPath: '/admin/bills'
+      preLoaderRoute: typeof AdminBillsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/demand': {
+      id: '/admin/demand'
+      path: '/demand'
+      fullPath: '/admin/demand'
+      preLoaderRoute: typeof AdminDemandRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/payments': {
+      id: '/admin/payments'
+      path: '/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AdminPaymentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/plots': {
+      id: '/admin/plots'
+      path: '/plots'
+      fullPath: '/admin/plots'
+      preLoaderRoute: typeof AdminPlotsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/rates': {
+      id: '/admin/rates'
+      path: '/rates'
+      fullPath: '/admin/rates'
+      preLoaderRoute: typeof AdminRatesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/schemes': {
+      id: '/admin/schemes'
+      path: '/schemes'
+      fullPath: '/admin/schemes'
+      preLoaderRoute: typeof AdminSchemesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/portal/': {
+      id: '/portal/'
+      path: '/'
+      fullPath: '/portal/'
+      preLoaderRoute: typeof PortalIndexRouteImport
+      parentRoute: typeof PortalRoute
+    }
+    '/portal/history': {
+      id: '/portal/history'
+      path: '/history'
+      fullPath: '/portal/history'
+      preLoaderRoute: typeof PortalHistoryRouteImport
+      parentRoute: typeof PortalRoute
+    }
+    '/portal/notifications': {
+      id: '/portal/notifications'
+      path: '/notifications'
+      fullPath: '/portal/notifications'
+      preLoaderRoute: typeof PortalNotificationsRouteImport
+      parentRoute: typeof PortalRoute
+    }
+    '/portal/pay': {
+      id: '/portal/pay'
+      path: '/pay'
+      fullPath: '/portal/pay'
+      preLoaderRoute: typeof PortalPayRouteImport
+      parentRoute: typeof PortalRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAllotmentRoute: typeof AdminAllotmentRoute
+  AdminAllotteesRoute: typeof AdminAllotteesRoute
+  AdminBillsRoute: typeof AdminBillsRoute
+  AdminDemandRoute: typeof AdminDemandRoute
+  AdminPaymentsRoute: typeof AdminPaymentsRoute
+  AdminPlotsRoute: typeof AdminPlotsRoute
+  AdminRatesRoute: typeof AdminRatesRoute
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminSchemesRoute: typeof AdminSchemesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAllotmentRoute: AdminAllotmentRoute,
+  AdminAllotteesRoute: AdminAllotteesRoute,
+  AdminBillsRoute: AdminBillsRoute,
+  AdminDemandRoute: AdminDemandRoute,
+  AdminPaymentsRoute: AdminPaymentsRoute,
+  AdminPlotsRoute: AdminPlotsRoute,
+  AdminRatesRoute: AdminRatesRoute,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminSchemesRoute: AdminSchemesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface PortalRouteChildren {
+  PortalHistoryRoute: typeof PortalHistoryRoute
+  PortalNotificationsRoute: typeof PortalNotificationsRoute
+  PortalPayRoute: typeof PortalPayRoute
+  PortalIndexRoute: typeof PortalIndexRoute
+}
+
+const PortalRouteChildren: PortalRouteChildren = {
+  PortalHistoryRoute: PortalHistoryRoute,
+  PortalNotificationsRoute: PortalNotificationsRoute,
+  PortalPayRoute: PortalPayRoute,
+  PortalIndexRoute: PortalIndexRoute,
+}
+
+const PortalRouteWithChildren =
+  PortalRoute._addFileChildren(PortalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  PortalRoute: PortalRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
