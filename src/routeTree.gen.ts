@@ -26,6 +26,7 @@ import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as PortalIndexRouteImport } from './routes/portal.index'
 import { Route as PortalHistoryRouteImport } from './routes/portal.history'
+import { Route as PortalNotificationsRouteImport } from './routes/portal.notifications'
 import { Route as PortalPayRouteImport } from './routes/portal.pay'
 
 const IndexRoute = IndexRouteImport.update({
@@ -113,6 +114,11 @@ const PortalHistoryRoute = PortalHistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => PortalRoute,
 } as any)
+const PortalNotificationsRoute = PortalNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => PortalRoute,
+} as any)
 const PortalPayRoute = PortalPayRouteImport.update({
   id: '/pay',
   path: '/pay',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin/': typeof AdminIndexRoute
   '/portal/': typeof PortalIndexRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin': typeof AdminIndexRoute
   '/portal': typeof PortalIndexRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/portal/history': typeof PortalHistoryRoute
+  '/portal/notifications': typeof PortalNotificationsRoute
   '/portal/pay': typeof PortalPayRoute
   '/admin/': typeof AdminIndexRoute
   '/portal/': typeof PortalIndexRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/portal/history'
+    | '/portal/notifications'
     | '/portal/pay'
     | '/admin/'
     | '/portal/'
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/portal/history'
+    | '/portal/notifications'
     | '/portal/pay'
     | '/admin'
     | '/portal'
@@ -234,6 +245,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/portal/history'
+    | '/portal/notifications'
     | '/portal/pay'
     | '/admin/'
     | '/portal/'
@@ -366,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalHistoryRouteImport
       parentRoute: typeof PortalRoute
     }
+    '/portal/notifications': {
+      id: '/portal/notifications'
+      path: '/notifications'
+      fullPath: '/portal/notifications'
+      preLoaderRoute: typeof PortalNotificationsRouteImport
+      parentRoute: typeof PortalRoute
+    }
     '/portal/pay': {
       id: '/portal/pay'
       path: '/pay'
@@ -410,12 +429,14 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PortalRouteChildren {
   PortalHistoryRoute: typeof PortalHistoryRoute
+  PortalNotificationsRoute: typeof PortalNotificationsRoute
   PortalPayRoute: typeof PortalPayRoute
   PortalIndexRoute: typeof PortalIndexRoute
 }
 
 const PortalRouteChildren: PortalRouteChildren = {
   PortalHistoryRoute: PortalHistoryRoute,
+  PortalNotificationsRoute: PortalNotificationsRoute,
   PortalPayRoute: PortalPayRoute,
   PortalIndexRoute: PortalIndexRoute,
 }
